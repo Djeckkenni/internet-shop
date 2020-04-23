@@ -4,7 +4,6 @@ import mate.acadamy.internetshop.dao.Injector;
 import mate.acadamy.internetshop.dao.Storage;
 import mate.acadamy.internetshop.model.Product;
 import mate.acadamy.internetshop.service.ItemService;
-
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 
@@ -42,7 +41,6 @@ public class Application {
 
         itemService.delete(boots);
         System.out.println(Storage.items.toString());
-
     }
 }
 

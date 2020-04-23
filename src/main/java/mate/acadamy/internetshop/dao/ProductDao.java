@@ -12,9 +12,9 @@ public interface ProductDao {
 
     Product update(Product product);
 
-    void delete(Long productId);
+    boolean delete(Long productId);
 
-    void delete(Product product);
+    boolean delete(Product product);
 
     List<Product> getAll();
 }

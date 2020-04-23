@@ -12,9 +12,9 @@ public interface ItemService {
 
     Product update(Product item);
 
-    void delete(long id);
+    boolean delete(long id);
 
-    void delete(Product item);
+    boolean delete(Product item);
 
     List<Product> getAll();
 }
