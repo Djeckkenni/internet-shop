@@ -5,7 +5,7 @@ import java.util.List;
 public class Order {
     private Long orderId;
     private User user;
-    private List<Product> items;
+    private List<Product> products;
 
     public Long getOrderId() {
         return orderId;
@@ -23,20 +23,20 @@ public class Order {
         this.user = user;
     }
 
-    public List<Product> getItems() {
-        return items;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setItems(List<Product> items) {
-        this.items = items;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     @Override
     public String toString() {
-        return "Order{" + "orderId=" +
-                orderId + ", user="
-                + user + ", items="
-                + items + '}';
+        return "Order{" + "orderId="
+                + orderId + ", user="
+                + user + ", products="
+                + products + '}';
     }
 }
 

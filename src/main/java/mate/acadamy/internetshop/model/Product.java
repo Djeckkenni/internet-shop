@@ -3,41 +3,40 @@ package mate.acadamy.internetshop.model;
 import java.math.BigDecimal;
 
 public class Product {
-    private Long itemId;
-    private String itemName;
-    private BigDecimal itemPrice;
+    private Long productId;
+    private String productName;
+    private BigDecimal productPrice;
 
-    public Long getItemId() {
-        return itemId;
+    public Long getProductId() {
+        return productId;
     }
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
-    public String getItemName() {
-        return itemName;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public BigDecimal getItemPrice() {
-        return itemPrice;
+    public BigDecimal getProductPrice() {
+        return productPrice;
     }
 
-    public void setItemPrice(BigDecimal itemPrice) {
-        this.itemPrice = itemPrice;
+    public void setProductPrice(BigDecimal productPrice) {
+        this.productPrice = productPrice;
     }
 
     @Override
     public String toString() {
-        return "Item{"
-                + "itemId=" + itemId
-                + ", itemName='" + itemName
-                + '\'' + ", itemPrice="
-                + itemPrice + '}';
+        return "Product{" + "productId=" + productId
+                + ", productName='" + productName
+                + '\'' + ", productPrice="
+                + productPrice + '}';
     }
 }
 

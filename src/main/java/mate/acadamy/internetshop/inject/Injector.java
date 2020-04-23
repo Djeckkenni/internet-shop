@@ -1,4 +1,4 @@
-package mate.acadamy.internetshop.dao;
+package mate.acadamy.internetshop.inject;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,12 +10,13 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import mate.acadamy.internetshop.dao.lib.Dao;
+import mate.acadamy.internetshop.inject.lib.Inject;
+import mate.acadamy.internetshop.service.lib.Service;
 
 public class Injector {
 
     private static final Map<String, Injector> injectors = new HashMap<>();
-
     private static final Map<Class<?>, Object> instanceOfClasses = new HashMap<>();
     private static final List<Class<?>> classes = new ArrayList<>();
 
@@ -57,7 +58,6 @@ public class Injector {
         if (newInstanceOfClass == null) {
             return getNewInstance(clazz);
         }
-
         return newInstanceOfClass;
     }
 

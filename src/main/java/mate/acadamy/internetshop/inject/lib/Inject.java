@@ -1,4 +1,4 @@
-package mate.acadamy.internetshop.dao;
+package mate.acadamy.internetshop.inject.lib;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

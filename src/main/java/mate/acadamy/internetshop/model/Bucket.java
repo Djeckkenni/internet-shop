@@ -1,11 +1,10 @@
 package mate.acadamy.internetshop.model;
 
 import java.util.List;
-import java.util.Optional;
 
 public class Bucket {
     private Long bucketId;
-    private List<Optional<Product>> items;
+    private List<Product> products;
     private User user;
 
     public Long getBucketId() {
@@ -16,12 +15,12 @@ public class Bucket {
         this.bucketId = bucketId;
     }
 
-    public List<Optional<Product>> getItems() {
-        return items;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setItems(List<Optional<Product>> items) {
-        this.items = items;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public User getUser() {
@@ -34,11 +33,10 @@ public class Bucket {
 
     @Override
     public String toString() {
-        return "Bucket{" +
-                "bucketId=" + bucketId +
-                ", items=" + items +
-                ", user=" + user +
-                '}';
+        return "Bucket{" + "bucketId="
+                + bucketId + ", products="
+                + products + ", user="
+                + user + '}';
     }
 }
 

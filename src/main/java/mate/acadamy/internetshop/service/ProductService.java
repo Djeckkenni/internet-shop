@@ -1,13 +1,12 @@
-package mate.acadamy.internetshop.dao;
+package mate.acadamy.internetshop.service;
 
 import java.util.List;
-import java.util.Optional;
 import mate.acadamy.internetshop.model.Product;
 
-public interface ProductDao {
+public interface ProductService {
     Product create(Product product);
 
-    Optional<Product> get(Long productId);
+    Product get(Long productId);
 
     Product update(Product product);
 
@@ -17,4 +16,3 @@ public interface ProductDao {
 
     List<Product> getAll();
 }
-
