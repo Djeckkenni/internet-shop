@@ -1,28 +1,30 @@
 package mate.acadamy.internetshop.service.impl;
 
 import mate.acadamy.internetshop.dao.Inject;
-import mate.acadamy.internetshop.dao.ItemDao;
+import mate.acadamy.internetshop.dao.ProductDao;
 import mate.acadamy.internetshop.dao.Service;
-import mate.acadamy.internetshop.model.Item;
+import mate.acadamy.internetshop.model.Product;
 import mate.acadamy.internetshop.service.ItemService;
+
+import java.util.Optional;
 
 @Service
 public class ItemServiceImpl implements ItemService {
     @Inject
-    private ItemDao itemDao;
+    private ProductDao itemDao;
 
     @Override
-    public Item create(Item item) {
+    public Product create(Product item) {
         return itemDao.create(item);
     }
 
     @Override
-    public Item get(long id) {
+    public Optional<Product> get(long id) {
         return itemDao.get(id);
     }
 
     @Override
-    public Item update(Item item) {
+    public Product update(Product item) {
         return itemDao.update(item);
     }
 
@@ -32,7 +34,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public void delete(Item item) {
+    public void delete(Product item) {
         itemDao.delete(item);
     }
 }

@@ -1,15 +1,17 @@
 package mate.acadamy.internetshop.service;
 
-import mate.acadamy.internetshop.model.Item;
+import mate.acadamy.internetshop.model.Product;
+
+import java.util.Optional;
 
 public interface ItemService {
-    Item create(Item item);
+    Product create(Product item);
 
-    Item get(long id);
+    Optional<Product> get(long id);
 
-    Item update(Item item);
+    Product update(Product item);
 
     void delete(long id);
 
-    void delete(Item item);
+    void delete(Product item);
 }

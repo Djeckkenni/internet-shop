@@ -2,7 +2,7 @@ package mate.acadamy.internetshop.model;
 
 import java.math.BigDecimal;
 
-public class Item {
+public class Product {
     private Long itemId;
     private String itemName;
     private BigDecimal itemPrice;

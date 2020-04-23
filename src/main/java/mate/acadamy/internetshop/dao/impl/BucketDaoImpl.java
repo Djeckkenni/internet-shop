@@ -6,10 +6,6 @@ import mate.acadamy.internetshop.model.Bucket;
 import java.util.NoSuchElementException;
 
 public class BucketDaoImpl implements BucketDao {
-    @Override
-    public Bucket create(Bucket bucket) {
-        return null;
-    }
 
     @Override
     public Bucket get(long bucketId) {
