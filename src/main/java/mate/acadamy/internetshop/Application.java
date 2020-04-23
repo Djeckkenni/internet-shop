@@ -42,6 +42,7 @@ public class Application {
 
         itemService.delete(boots);
         System.out.println(Storage.items.toString());
+
     }
 }
 

@@ -6,6 +6,7 @@ import mate.acadamy.internetshop.dao.Service;
 import mate.acadamy.internetshop.model.Product;
 import mate.acadamy.internetshop.service.ItemService;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,8 +20,8 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public Optional<Product> get(long id) {
-        return itemDao.get(id);
+    public Product get(long id) {
+        return itemDao.get(id).get();
     }
 
     @Override
@@ -36,6 +37,11 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public void delete(Product item) {
         itemDao.delete(item);
+    }
+
+    @Override
+    public List<Product> getAll() {
+        return itemDao.getAll();
     }
 }
 

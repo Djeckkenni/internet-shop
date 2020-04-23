@@ -4,8 +4,7 @@ import mate.acadamy.internetshop.dao.Dao;
 import mate.acadamy.internetshop.dao.ProductDao;
 import mate.acadamy.internetshop.dao.Storage;
 import mate.acadamy.internetshop.model.Product;
-
-import java.util.NoSuchElementException;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
@@ -41,6 +40,11 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public void delete(Product product) {
         Storage.items.remove(product);
+    }
+
+    @Override
+    public List<Product> getAll() {
+        return Storage.items;
     }
 }
 

@@ -2,6 +2,7 @@ package mate.acadamy.internetshop.dao;
 
 import mate.acadamy.internetshop.model.Product;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface ProductDao {
@@ -14,5 +15,7 @@ public interface ProductDao {
     void delete(Long productId);
 
     void delete(Product product);
+
+    List<Product> getAll();
 }
 
