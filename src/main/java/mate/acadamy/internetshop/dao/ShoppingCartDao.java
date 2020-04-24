@@ -2,7 +2,6 @@ package mate.acadamy.internetshop.dao;
 
 import java.util.List;
 import java.util.Optional;
-import mate.acadamy.internetshop.model.Product;
 import mate.acadamy.internetshop.model.ShoppingCart;
 
 public interface ShoppingCartDao {
@@ -17,8 +16,6 @@ public interface ShoppingCartDao {
     boolean delete(Long shoppingCartId);
 
     boolean delete(ShoppingCart shoppingCart);
-
-    List<Product> getAllProducts(ShoppingCart shoppingCart);
 
     List<ShoppingCart> getAll();
 }

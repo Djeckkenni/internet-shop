@@ -2,6 +2,7 @@ package mate.acadamy.internetshop.service.impl;
 
 import java.util.List;
 import mate.acadamy.internetshop.dao.ShoppingCartDao;
+import mate.acadamy.internetshop.db.Storage;
 import mate.acadamy.internetshop.inject.lib.Inject;
 import mate.acadamy.internetshop.model.Product;
 import mate.acadamy.internetshop.model.ShoppingCart;
@@ -15,19 +16,19 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public ShoppingCart addProduct(ShoppingCart shoppingCart, Product product) {
-        if (shoppingCart.getShoppingCartId() == null) {
-            shoppingCartDao.create(shoppingCart);
-        }
+        shoppingCartDao.create(shoppingCart);
         shoppingCart.getProducts().add(product);
         return shoppingCartDao.update(shoppingCart);
     }
 
     @Override
     public boolean deleteProduct(ShoppingCart shoppingCart, Product product) {
-        shoppingCart.getProducts().removeIf(product1 -> product.getProductId()
-                .equals(product1.getProductId()));
-        shoppingCartDao.update(shoppingCart);
-        return true;
+        if (shoppingCart.getProducts().removeIf(product1 -> product.getProductId()
+                .equals(product1.getProductId()))) {
+            shoppingCartDao.update(shoppingCart);
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -43,6 +44,9 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public List<Product> getAllProducts(ShoppingCart shoppingCart) {
-        return shoppingCartDao.getAllProducts(shoppingCart);
+        return Storage.shoppingCarts
+                .stream()
+                .filter(cart -> cart.getShoppingCartId().equals(shoppingCart.getShoppingCartId()))
+                .findFirst().get().getProducts();
     }
 }

@@ -6,7 +6,6 @@ import java.util.stream.IntStream;
 import mate.acadamy.internetshop.dao.ShoppingCartDao;
 import mate.acadamy.internetshop.dao.lib.Dao;
 import mate.acadamy.internetshop.db.Storage;
-import mate.acadamy.internetshop.model.Product;
 import mate.acadamy.internetshop.model.ShoppingCart;
 
 @Dao
@@ -49,14 +48,6 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
     @Override
     public boolean delete(ShoppingCart shoppingCart) {
         return Storage.shoppingCarts.remove(shoppingCart);
-    }
-
-    @Override
-    public List<Product> getAllProducts(ShoppingCart shoppingCart) {
-        return Storage.shoppingCarts
-                .stream()
-                .filter(cart -> cart.getShoppingCartId().equals(shoppingCart.getShoppingCartId()))
-                .findFirst().get().getProducts();
     }
 
     @Override
