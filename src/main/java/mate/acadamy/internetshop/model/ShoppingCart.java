@@ -2,17 +2,17 @@ package mate.acadamy.internetshop.model;
 
 import java.util.List;
 
-public class Bucket {
-    private Long bucketId;
+public class ShoppingCart {
+    private Long shoppingCartId;
     private List<Product> products;
     private User user;
 
-    public Long getBucketId() {
-        return bucketId;
+    public Long getShoppingCartId() {
+        return shoppingCartId;
     }
 
-    public void setBucketId(Long bucketId) {
-        this.bucketId = bucketId;
+    public void setShoppingCartId(Long shoppingCartId) {
+        this.shoppingCartId = shoppingCartId;
     }
 
     public List<Product> getProducts() {
@@ -33,11 +33,10 @@ public class Bucket {
 
     @Override
     public String toString() {
-        return "Bucket{" + "bucketId="
-                + bucketId + ", products="
+        return "ShoppingCart{" + "shoppingCartId="
+                + shoppingCartId + ", products="
                 + products + ", user="
                 + user + '}';
     }
 }
-
 
