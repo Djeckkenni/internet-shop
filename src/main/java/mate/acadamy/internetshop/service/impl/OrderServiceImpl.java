@@ -3,7 +3,7 @@ package mate.acadamy.internetshop.service.impl;
 import java.util.List;
 import mate.acadamy.internetshop.dao.OrderDao;
 import mate.acadamy.internetshop.dao.ProductDao;
-import mate.acadamy.internetshop.dao.UserDao;
+import mate.acadamy.internetshop.dao.ShoppingCartDao;
 import mate.acadamy.internetshop.inject.lib.Inject;
 import mate.acadamy.internetshop.model.Order;
 import mate.acadamy.internetshop.model.Product;
@@ -19,8 +19,7 @@ public class OrderServiceImpl implements OrderService {
     @Inject
     private ShoppingCartService shoppingCartService;
     @Inject
-    private UserDao userDao;
-
+    private ShoppingCartDao shoppingCartDao;
     @Inject
     private ProductDao productDao;
     @Override
@@ -28,7 +27,8 @@ public class OrderServiceImpl implements OrderService {
         Order order = new Order();
         order.setProducts(products);
         order.setUser(user);
-        //shoppingCartService.clear(shoppingCartService.getByUserId(user.getUserId()));
+        orderDao.create(order);
+        shoppingCartService.clear(shoppingCartService.getByUserId(user.getUserId()));
         return order;
     }
 
