@@ -48,7 +48,7 @@ public class Application {
         System.out.println("Get product by ID: " + productService.get(2L));
         System.out.println("Get all products from data base: " + productService.getAll());
         Product product = productService.get(1L);
-        product.setProductPrice(new BigDecimal(450));
+        product.setProductPrice(new BigDecimal(400));
         System.out.println("Update product with ID = 1 and delete product with ID = 3: "
                 + productService.update(product) + ", " + productService.delete(3L));
         System.out.println("Get all products from data base: ");
