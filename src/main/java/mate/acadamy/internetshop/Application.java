@@ -2,7 +2,6 @@ package mate.acadamy.internetshop;
 
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
-import java.util.List;
 import mate.acadamy.internetshop.inject.Injector;
 import mate.acadamy.internetshop.model.Order;
 import mate.acadamy.internetshop.model.Product;
@@ -87,15 +86,22 @@ public class Application {
         System.out.println("ShoppingCart before complete:");
         System.out.println(shoppingCartServiceForUser1);
         OrderService orderService = (OrderService) INJECTOR.getInstance(OrderService.class);
-        Order orderForShCartUser1 = orderService.completeOrder(List.of(product1, product2), user1);
-        Order orderForShCartUser2 = orderService.completeOrder(List.of(product3, product4), user1);
-        System.out.println("Create two orders for " + user1.getUserName());
-        System.out.println("First order: " + orderForShCartUser1);
-        System.out.println("Second order: " + orderForShCartUser2);
+        Order orderForShCartUser1 = orderService.completeOrder(shoppingCartService
+                .getAllProducts(shoppingCartServiceForUser1), user1);
+        System.out.println("Create first order for " + user1.getUserName());
+        System.out.println(orderForShCartUser1);
         System.out.println("ShoppingCart after complete:");
         System.out.println(shoppingCartServiceForUser1);
+
+        System.out.println("Create second order for " + user1.getUserName());
+        shoppingCartService.addProduct(shoppingCartServiceForUser1,product1);
+        shoppingCartService.addProduct(shoppingCartServiceForUser1,product2);
+        Order orderForShCartUser2 = orderService.completeOrder(shoppingCartService
+                .getAllProducts(shoppingCartServiceForUser1), user1);
+        System.out.println(orderForShCartUser2);
+
         System.out.println("Get order by id:");
-        System.out.println(orderService.get(2L));
+        System.out.println(orderService.get(1L));
         System.out.println("Get user orders:");
         System.out.println(orderService.getUserOrders(user1));
         System.out.println("Get all orders:");

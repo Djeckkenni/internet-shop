@@ -7,7 +7,6 @@ import mate.acadamy.internetshop.model.User;
 import mate.acadamy.internetshop.service.UserService;
 import mate.acadamy.internetshop.service.lib.Service;
 
-
 @Service
 public class UserServiceImpl implements UserService {
     @Inject
