@@ -1,18 +1,8 @@
 package mate.acadamy.internetshop.dao;
 
-import java.util.List;
-import java.util.Optional;
 import mate.acadamy.internetshop.model.Product;
 
-public interface ProductDao {
-    Product create(Product product);
+public interface ProductDao extends GenericDao<Product, Long> {
 
-    Optional<Product> get(Long productId);
-
-    List<Product> getAll();
-
-    Product update(Product product);
-
-    boolean delete(Long productId);
 }
 

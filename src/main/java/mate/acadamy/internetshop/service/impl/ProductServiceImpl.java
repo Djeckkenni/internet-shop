@@ -1,11 +1,12 @@
 package mate.acadamy.internetshop.service.impl;
 
-import java.util.List;
 import mate.acadamy.internetshop.dao.ProductDao;
 import mate.acadamy.internetshop.inject.lib.Inject;
 import mate.acadamy.internetshop.model.Product;
 import mate.acadamy.internetshop.service.ProductService;
 import mate.acadamy.internetshop.service.lib.Service;
+
+import java.util.List;
 
 @Service
 public class ProductServiceImpl implements ProductService {

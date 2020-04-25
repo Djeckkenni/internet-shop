@@ -1,8 +1,5 @@
 package mate.acadamy.internetshop;
 
-import java.lang.reflect.InvocationTargetException;
-import java.math.BigDecimal;
-import java.util.List;
 import mate.acadamy.internetshop.inject.Injector;
 import mate.acadamy.internetshop.model.Order;
 import mate.acadamy.internetshop.model.Product;
@@ -12,6 +9,10 @@ import mate.acadamy.internetshop.service.OrderService;
 import mate.acadamy.internetshop.service.ProductService;
 import mate.acadamy.internetshop.service.ShoppingCartService;
 import mate.acadamy.internetshop.service.UserService;
+
+import java.lang.reflect.InvocationTargetException;
+import java.math.BigDecimal;
+import java.util.List;
 
 public class Application {
     private static final Injector INJECTOR = Injector.getInstance("mate.acadamy.internetshop");
@@ -28,101 +29,104 @@ public class Application {
         product1.setProductPrice(new BigDecimal(500));
         productService.create(product1);
         System.out.println(product1.toString());
-
         Product product2 = new Product();
         product2.setProductName("jeans");
         product2.setProductPrice(new BigDecimal(300));
         productService.create(product2);
         System.out.println(product2.toString());
-
         Product product3 = new Product();
         product3.setProductName("jacket");
         product3.setProductPrice(new BigDecimal(400));
         productService.create(product3);
         System.out.println(product3.toString());
-
         Product product4 = new Product();
         product4.setProductName("watch");
         product4.setProductPrice(new BigDecimal(1000));
         productService.create(product4);
         System.out.println(product4.toString());
-
         System.out.println("");
         System.out.println("Get product by ID: " + productService.get(2L));
-        System.out.println("");
         System.out.println("Get all products from data base: " + productService.getAll());
-        System.out.println("");
         Product product = productService.get(1L);
         product.setProductPrice(new BigDecimal(450));
         System.out.println("Update product with ID = 1 and delete product with ID = 3: "
                 + productService.update(product) + ", " + productService.delete(3L));
-        System.out.println("");
         System.out.println("Get all products from data base: ");
         System.out.println(productService.getAll());
         System.out.println("");
 
         System.out.println("USER");
         System.out.println("----");
-        System.out.println("Initialized and created users Tom, Bob, Sue, Marry:");
+        System.out.println("Initialized and created users Tom:");
         UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
 
         User user1 = new User();
         user1.setUserName("Tom");
         userService.create(user1);
         System.out.println(user1.toString());
-        System.out.println("Get shoppingCart for user " + user1.getUserName() + ":");
-        ShoppingCartService shoppingCartService = (ShoppingCartService) INJECTOR
-                .getInstance(ShoppingCartService.class);
-        ShoppingCart shopCartByUser1 = shoppingCartService.getByUserId(user1.getUserId());
-        System.out.println(shopCartByUser1);
-        System.out.println("Add products to the shoppingCart for user "
-                + user1.getUserName() + ":");
-        List<Product> listForUser1 = shoppingCartService.getAllProducts(shopCartByUser1);
-        listForUser1.add(product1);
-        listForUser1.add(product2);
-        listForUser1.add(product3);
-        listForUser1.add(product4);
-        System.out.println(shopCartByUser1);
-        System.out.println("Product list for " + user1.getUserName() + ":");
-        System.out.println(listForUser1.toString());
-        System.out.println("Delete products with id = 2 from the shoppingCart for user "
-                + user1.getUserName() + ":");
-        shoppingCartService.deleteProduct(shopCartByUser1, product4);
-        System.out.println(shopCartByUser1);
-        OrderService orderService = (OrderService) INJECTOR.getInstance(OrderService.class);
-        Order firstOrderForUser1 = orderService.completeOrder(listForUser1, user1);
-        System.out.println("Complete " + user1.getUserName() + " order and clear shoppingCart");
-        System.out.println(firstOrderForUser1);
+        System.out.println("");
+        System.out.println("Create shopping cart for " + user1.getUserName() + ":");
+        ShoppingCartService shoppingCartService = (ShoppingCartService)
+                INJECTOR.getInstance(ShoppingCartService.class);
+        ShoppingCart shoppingCartServiceForUser1 = shoppingCartService
+                .getByUserId(user1.getUserId());
+        System.out.println(shoppingCartServiceForUser1);
+        System.out.println("Added product to the " + user1.getUserName() + " shopping cart:");
+        shoppingCartService.addProduct(shoppingCartServiceForUser1,product1);
+        shoppingCartService.addProduct(shoppingCartServiceForUser1,product2);
+        shoppingCartService.addProduct(shoppingCartServiceForUser1,product3);
+        shoppingCartService.addProduct(shoppingCartServiceForUser1,product4);
+        System.out.println(shoppingCartServiceForUser1);
+        System.out.println("Delete product \"watch\" from the "
+                + user1.getUserName() + " shopping cart:");
+        shoppingCartService.deleteProduct(shoppingCartServiceForUser1, product4);
+        System.out.println(shoppingCartServiceForUser1);
+        System.out.println("Get all products from the " + user1.getUserName() + " shopping cart:");
+        System.out.println(shoppingCartService.getAllProducts(shoppingCartServiceForUser1));
         System.out.println("");
 
+        System.out.println("ShoppingCart before complete:");
+        System.out.println(shoppingCartServiceForUser1);
+        OrderService orderService = (OrderService) INJECTOR.getInstance(OrderService.class);
+        Order orderForShCartUser1 = orderService.completeOrder(List.of(product1, product2), user1);
+        Order orderForShCartUser2 = orderService.completeOrder(List.of(product3, product4), user1);
+        System.out.println("Create two orders for " + user1.getUserName());
+        System.out.println("First order: " + orderForShCartUser1);
+        System.out.println("Second order: " + orderForShCartUser2);
+        System.out.println("ShoppingCart after complete:");
+        System.out.println(shoppingCartServiceForUser1);
+        System.out.println("Get order by id:");
+        System.out.println(orderService.get(2L));
+        System.out.println("Get user orders:");
+        System.out.println(orderService.getUserOrders(user1));
+        System.out.println("Get all orders:");
+        System.out.println(orderService.getAll());
+        System.out.println("Delete second order:");
+        orderService.delete(2L);
+        System.out.println(orderService.getUserOrders(user1));
+        System.out.println("");
+
+        System.out.println("Initialized and created users Bob, Sue, Marry:");
         User user2 = new User();
         user2.setUserName("Bob");
         userService.create(user2);
         System.out.println(user2.toString());
-
         User user3 = new User();
         user3.setUserName("Sue");
         userService.create(user3);
         System.out.println(user3.toString());
-
         User user4 = new User();
         user4.setUserName("Marry");
         userService.create(user4);
         System.out.println(user4.toString());
-
-        System.out.println("");
         System.out.println("Get user by ID: " + userService.get(2L));
-        System.out.println("");
         System.out.println("Get all users from data base: " + userService.getAll());
-        System.out.println("");
         User user = userService.get(1L);
         user.setUserName("New Tom");
         System.out.println("Update user with ID = 1 and delete user with ID = 3: "
                 + userService.update(user) + ", " + userService.delete(3L));
-        System.out.println("");
         System.out.println("Get all users from data base: ");
         System.out.println(userService.getAll());
-        System.out.println("");
     }
 }
 

@@ -1,11 +1,12 @@
 package mate.acadamy.internetshop.service.impl;
 
-import java.util.List;
 import mate.acadamy.internetshop.dao.UserDao;
 import mate.acadamy.internetshop.inject.lib.Inject;
 import mate.acadamy.internetshop.model.User;
 import mate.acadamy.internetshop.service.UserService;
 import mate.acadamy.internetshop.service.lib.Service;
+
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {

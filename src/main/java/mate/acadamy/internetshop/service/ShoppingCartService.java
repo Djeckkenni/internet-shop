@@ -1,8 +1,9 @@
 package mate.acadamy.internetshop.service;
 
-import java.util.List;
 import mate.acadamy.internetshop.model.Product;
 import mate.acadamy.internetshop.model.ShoppingCart;
+
+import java.util.List;
 
 public interface ShoppingCartService {
     ShoppingCart addProduct(ShoppingCart shoppingCart, Product product);
