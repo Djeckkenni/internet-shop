@@ -4,8 +4,8 @@ import java.util.List;
 
 public class ShoppingCart {
     private Long shoppingCartId;
-    private List<Product> products;
     private User user;
+    private List<Product> products;
 
     public Long getShoppingCartId() {
         return shoppingCartId;

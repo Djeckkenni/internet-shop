@@ -2,7 +2,6 @@ package mate.acadamy.internetshop.dao.impl;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import mate.acadamy.internetshop.dao.OrderDao;
 import mate.acadamy.internetshop.dao.lib.Dao;
@@ -25,10 +24,8 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public List<Order> getUserOrders(Long userId) {
-        return Storage.orders.stream()
-                .filter(order -> order.getUser().getUserId().equals(userId))
-                .collect(Collectors.toList());
+    public List<Order> getAll() {
+        return Storage.orders;
     }
 
     @Override
@@ -42,15 +39,5 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public boolean delete(Long orderId) {
         return Storage.orders.removeIf(order -> order.getOrderId().equals(orderId));
-    }
-
-    @Override
-    public boolean delete(Order order) {
-        return Storage.orders.remove(order);
-    }
-
-    @Override
-    public List<Order> getAll() {
-        return Storage.orders;
     }
 }

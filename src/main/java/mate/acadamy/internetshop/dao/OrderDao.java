@@ -9,13 +9,9 @@ public interface OrderDao {
 
     Optional<Order> get(Long orderId);
 
-    List<Order> getUserOrders(Long userId);
+    List<Order> getAll();
 
     Order update(Order order);
 
     boolean delete(Long orderId);
-
-    boolean delete(Order order);
-
-    List<Order> getAll();
 }

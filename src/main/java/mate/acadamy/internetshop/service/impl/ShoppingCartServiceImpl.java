@@ -1,12 +1,13 @@
 package mate.acadamy.internetshop.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
-import mate.acadamy.internetshop.dao.ProductDao;
 import mate.acadamy.internetshop.dao.ShoppingCartDao;
 import mate.acadamy.internetshop.dao.UserDao;
 import mate.acadamy.internetshop.inject.lib.Inject;
 import mate.acadamy.internetshop.model.Product;
 import mate.acadamy.internetshop.model.ShoppingCart;
+import mate.acadamy.internetshop.model.User;
 import mate.acadamy.internetshop.service.ShoppingCartService;
 import mate.acadamy.internetshop.service.lib.Service;
 
@@ -16,8 +17,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     private ShoppingCartDao shoppingCartDao;
     @Inject
     private UserDao userDao;
-    @Inject
-    private ProductDao productDao;
 
     @Override
     public ShoppingCart addProduct(ShoppingCart shoppingCart, Product product) {
@@ -30,19 +29,32 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         if (shoppingCart.getProducts().remove(product)) {
             shoppingCartDao.update(shoppingCart);
             return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     @Override
     public void clear(ShoppingCart shoppingCart) {
-        shoppingCartDao.getAll().clear();
+        shoppingCart.getProducts().clear();
         shoppingCartDao.update(shoppingCart);
     }
 
     @Override
     public ShoppingCart getByUserId(Long userId) {
-        return shoppingCartDao.getByUserId(userId).orElse(shoppingCartDao.create(new ShoppingCart()));
+        return shoppingCartDao.getAll().stream()
+                .filter(element -> element.getUser().getUserId().equals(userId))
+                .findFirst()
+                .orElseGet(() -> {
+                    User findUser = userDao.getAll().stream()
+                            .filter(user -> user.getUserId().equals(userId))
+                            .findFirst().get();
+                    ShoppingCart shoppingCart = new ShoppingCart();
+                    shoppingCart.setUser(findUser);
+                    List<Product> productList = new ArrayList<>();
+                    shoppingCart.setProducts(productList);
+                    return shoppingCartDao.create(shoppingCart);
+                });
     }
 
     @Override

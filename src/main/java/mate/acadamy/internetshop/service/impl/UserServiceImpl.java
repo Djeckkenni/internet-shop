@@ -23,6 +23,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> getAll() {
+        return userDao.getAll();
+    }
+
+    @Override
     public User update(User user) {
         return userDao.update(user);
     }
@@ -30,10 +35,5 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean delete(Long userId) {
         return userDao.delete(userId);
-    }
-
-    @Override
-    public List<User> getAll() {
-        return userDao.getAll();
     }
 }

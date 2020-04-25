@@ -8,9 +8,9 @@ public interface UserService {
 
     User get(Long userId);
 
-    boolean delete(Long userId);
+    List<User> getAll();
 
     User update(User user);
 
-    List<User> getAll();
+    boolean delete(Long userId);
 }

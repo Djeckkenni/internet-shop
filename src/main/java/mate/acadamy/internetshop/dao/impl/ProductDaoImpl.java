@@ -24,6 +24,11 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
+    public List<Product> getAll() {
+        return Storage.products;
+    }
+
+    @Override
     public Product update(Product product) {
         IntStream.range(0, Storage.products.size())
                 .filter(index -> Storage.products.get(index).getProductId()
@@ -35,16 +40,6 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public boolean delete(Long productId) {
         return Storage.products.removeIf(product -> product.getProductId().equals(productId));
-    }
-
-    @Override
-    public boolean delete(Product product) {
-        return Storage.products.remove(product);
-    }
-
-    @Override
-    public List<Product> getAll() {
-        return Storage.products;
     }
 }
 

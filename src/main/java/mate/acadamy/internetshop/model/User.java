@@ -1,5 +1,7 @@
 package mate.acadamy.internetshop.model;
 
+import java.util.Objects;
+
 public class User {
     private Long userId;
     private String userName;
@@ -36,6 +38,26 @@ public class User {
 
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof User)) {
+            return false;
+        }
+        User user = (User) o;
+        return Objects.equals(userId, user.userId)
+                && Objects.equals(userName, user.userName)
+                && Objects.equals(userLogin, user.userLogin)
+                && Objects.equals(userPassword, user.userPassword);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId, userName, userLogin, userPassword);
     }
 
     @Override

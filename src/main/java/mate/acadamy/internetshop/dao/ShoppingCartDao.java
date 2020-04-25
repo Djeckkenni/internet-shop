@@ -9,13 +9,9 @@ public interface ShoppingCartDao {
 
     Optional<ShoppingCart> get(Long shoppingCartId);
 
-    Optional<ShoppingCart> getByUserId(Long userId);
+    List<ShoppingCart> getAll();
 
     ShoppingCart update(ShoppingCart shoppingCart);
 
     boolean delete(Long shoppingCartId);
-
-    boolean delete(ShoppingCart shoppingCart);
-
-    List<ShoppingCart> getAll();
 }
