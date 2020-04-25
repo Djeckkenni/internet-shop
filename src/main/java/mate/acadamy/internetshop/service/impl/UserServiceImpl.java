@@ -1,5 +1,6 @@
 package mate.acadamy.internetshop.service.impl;
 
+import com.sun.security.auth.module.KeyStoreLoginModule;
 import mate.acadamy.internetshop.dao.UserDao;
 import mate.acadamy.internetshop.inject.lib.Inject;
 import mate.acadamy.internetshop.model.User;
