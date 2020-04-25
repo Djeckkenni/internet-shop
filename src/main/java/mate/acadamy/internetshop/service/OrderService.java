@@ -9,11 +9,11 @@ import java.util.List;
 public interface OrderService {
     Order completeOrder(List<Product> products, User user);
 
-    Order get(Long id);
+    Order get(Long orderId);
 
     List<Order> getUserOrders(User user);
 
     List<Order> getAll();
 
-    boolean delete(Long id);
+    boolean delete(Long orderId);
 }

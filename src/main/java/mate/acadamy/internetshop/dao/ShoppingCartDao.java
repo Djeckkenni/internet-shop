@@ -7,11 +7,11 @@ import mate.acadamy.internetshop.model.ShoppingCart;
 public interface ShoppingCartDao {
     ShoppingCart create(ShoppingCart shoppingCart);
 
-    Optional<ShoppingCart> get(Long id);
+    Optional<ShoppingCart> get(Long shoppingCartId);
 
     List<ShoppingCart> getAll();
 
     ShoppingCart update(ShoppingCart shoppingCart);
 
-    boolean delete(Long id);
+    boolean delete(Long shoppingCartId);
 }

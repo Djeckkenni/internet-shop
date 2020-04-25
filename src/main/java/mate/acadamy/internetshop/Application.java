@@ -1,5 +1,8 @@
 package mate.acadamy.internetshop;
 
+import java.lang.reflect.InvocationTargetException;
+import java.math.BigDecimal;
+import java.util.List;
 import mate.acadamy.internetshop.inject.Injector;
 import mate.acadamy.internetshop.model.Order;
 import mate.acadamy.internetshop.model.Product;
@@ -9,10 +12,6 @@ import mate.acadamy.internetshop.service.OrderService;
 import mate.acadamy.internetshop.service.ProductService;
 import mate.acadamy.internetshop.service.ShoppingCartService;
 import mate.acadamy.internetshop.service.UserService;
-
-import java.lang.reflect.InvocationTargetException;
-import java.math.BigDecimal;
-import java.util.List;
 
 public class Application {
     private static final Injector INJECTOR = Injector.getInstance("mate.acadamy.internetshop");

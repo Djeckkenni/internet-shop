@@ -1,5 +1,7 @@
 package mate.acadamy.internetshop.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
 import mate.acadamy.internetshop.dao.ShoppingCartDao;
 import mate.acadamy.internetshop.dao.UserDao;
 import mate.acadamy.internetshop.inject.lib.Inject;
@@ -8,9 +10,6 @@ import mate.acadamy.internetshop.model.ShoppingCart;
 import mate.acadamy.internetshop.model.User;
 import mate.acadamy.internetshop.service.ShoppingCartService;
 import mate.acadamy.internetshop.service.lib.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {

@@ -7,11 +7,11 @@ import mate.acadamy.internetshop.model.Order;
 public interface OrderDao {
     Order create(Order order);
 
-    Optional<Order> get(Long id);
+    Optional<Order> get(Long orderId);
 
     List<Order> getAll();
 
     Order update(Order order);
 
-    boolean delete(Long id);
+    boolean delete(Long orderId);
 }

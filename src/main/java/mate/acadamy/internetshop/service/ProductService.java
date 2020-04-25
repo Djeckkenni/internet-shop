@@ -6,11 +6,11 @@ import mate.acadamy.internetshop.model.Product;
 public interface ProductService {
     Product create(Product product);
 
-    Product get(Long id);
+    Product get(Long productId);
 
     List<Product> getAll();
 
     Product update(Product product);
 
-    boolean delete(Long id);
+    boolean delete(Long productId);
 }

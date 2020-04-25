@@ -41,14 +41,14 @@ public class User {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object ob) {
+        if (this == ob) {
             return true;
         }
-        if (!(o instanceof User)) {
+        if (!(ob instanceof User)) {
             return false;
         }
-        User user = (User) o;
+        User user = (User) ob;
         return Objects.equals(userId, user.userId)
                 && Objects.equals(userName, user.userName)
                 && Objects.equals(userLogin, user.userLogin)

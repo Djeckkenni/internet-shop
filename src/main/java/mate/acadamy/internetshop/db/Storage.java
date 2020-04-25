@@ -1,12 +1,11 @@
 package mate.acadamy.internetshop.db;
 
+import java.util.ArrayList;
+import java.util.List;
 import mate.acadamy.internetshop.model.Order;
 import mate.acadamy.internetshop.model.Product;
 import mate.acadamy.internetshop.model.ShoppingCart;
 import mate.acadamy.internetshop.model.User;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Storage {
     public static Long productId = 0L;
