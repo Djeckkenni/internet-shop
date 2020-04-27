@@ -2,8 +2,6 @@ package mate.acadamy.internetshop;
 
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
-import java.util.List;
-
 import mate.acadamy.internetshop.inject.Injector;
 import mate.acadamy.internetshop.model.Order;
 import mate.acadamy.internetshop.model.Product;
