@@ -51,8 +51,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                             .findFirst().get();
                     ShoppingCart shoppingCart = new ShoppingCart();
                     shoppingCart.setUser(findUser);
-                    List<Product> productList = new ArrayList<>();
-                    shoppingCart.setProducts(productList);
                     return shoppingCartDao.create(shoppingCart);
                 });
     }
