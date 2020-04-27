@@ -1,6 +1,5 @@
 package mate.acadamy.internetshop.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 import mate.acadamy.internetshop.dao.ShoppingCartDao;
 import mate.acadamy.internetshop.dao.UserDao;

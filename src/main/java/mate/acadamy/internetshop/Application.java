@@ -21,23 +21,23 @@ public class Application {
         System.out.println("PRODUCT");
         System.out.println("-------");
         System.out.println("Initialized and created product boot, jeans, jacket, watch:");
-        ProductService productService = (ProductService) INJECTOR.getInstance(ProductService.class);
-        Product product1 = new Product();
+        var productService = (ProductService) INJECTOR.getInstance(ProductService.class);
+        var product1 = new Product();
         product1.setProductName("boot");
         product1.setProductPrice(new BigDecimal(500));
         productService.create(product1);
         System.out.println(product1.toString());
-        Product product2 = new Product();
+        var product2 = new Product();
         product2.setProductName("jeans");
         product2.setProductPrice(new BigDecimal(300));
         productService.create(product2);
         System.out.println(product2.toString());
-        Product product3 = new Product();
+        var product3 = new Product();
         product3.setProductName("jacket");
         product3.setProductPrice(new BigDecimal(400));
         productService.create(product3);
         System.out.println(product3.toString());
-        Product product4 = new Product();
+        var product4 = new Product();
         product4.setProductName("watch");
         product4.setProductPrice(new BigDecimal(1000));
         productService.create(product4);
@@ -45,7 +45,7 @@ public class Application {
         System.out.println("");
         System.out.println("Get product by ID: " + productService.get(2L));
         System.out.println("Get all products from data base: " + productService.getAll());
-        Product product = productService.get(1L);
+        var product = productService.get(1L);
         product.setProductPrice(new BigDecimal(400));
         System.out.println("Update product with ID = 1 and delete product with ID = 3: "
                 + productService.update(product) + ", " + productService.delete(3L));
@@ -56,7 +56,7 @@ public class Application {
         System.out.println("USER");
         System.out.println("----");
         System.out.println("Initialized and created users Tom:");
-        UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
+        var userService = (UserService) INJECTOR.getInstance(UserService.class);
 
         User user1 = new User();
         user1.setUserName("Tom");
@@ -64,9 +64,9 @@ public class Application {
         System.out.println(user1.toString());
         System.out.println("");
         System.out.println("Create shopping cart for " + user1.getUserName() + ":");
-        ShoppingCartService shoppingCartService = (ShoppingCartService)
+        var shoppingCartService = (ShoppingCartService)
                 INJECTOR.getInstance(ShoppingCartService.class);
-        ShoppingCart shoppingCartServiceForUser1 = shoppingCartService
+        var shoppingCartServiceForUser1 = shoppingCartService
                 .getByUserId(user1.getUserId());
         System.out.println(shoppingCartServiceForUser1);
         System.out.println("Added product to the " + user1.getUserName() + " shopping cart:");
@@ -85,8 +85,8 @@ public class Application {
 
         System.out.println("ShoppingCart before complete:");
         System.out.println(shoppingCartServiceForUser1);
-        OrderService orderService = (OrderService) INJECTOR.getInstance(OrderService.class);
-        Order orderForShCartUser1 = orderService.completeOrder(shoppingCartService
+        var orderService = (OrderService) INJECTOR.getInstance(OrderService.class);
+        var orderForShCartUser1 = orderService.completeOrder(shoppingCartService
                 .getAllProducts(shoppingCartServiceForUser1), user1);
         System.out.println("Create first order for " + user1.getUserName());
         System.out.println(orderForShCartUser1);
@@ -96,7 +96,7 @@ public class Application {
         System.out.println("Create second order for " + user1.getUserName());
         shoppingCartService.addProduct(shoppingCartServiceForUser1,product1);
         shoppingCartService.addProduct(shoppingCartServiceForUser1,product2);
-        Order orderForShCartUser2 = orderService.completeOrder(shoppingCartService
+        var orderForShCartUser2 = orderService.completeOrder(shoppingCartService
                 .getAllProducts(shoppingCartServiceForUser1), user1);
         System.out.println(orderForShCartUser2);
 
@@ -112,21 +112,21 @@ public class Application {
         System.out.println("");
 
         System.out.println("Initialized and created users Bob, Sue, Marry:");
-        User user2 = new User();
+        var user2 = new User();
         user2.setUserName("Bob");
         userService.create(user2);
         System.out.println(user2.toString());
-        User user3 = new User();
+        var user3 = new User();
         user3.setUserName("Sue");
         userService.create(user3);
         System.out.println(user3.toString());
-        User user4 = new User();
+        var user4 = new User();
         user4.setUserName("Marry");
         userService.create(user4);
         System.out.println(user4.toString());
         System.out.println("Get user by ID: " + userService.get(2L));
         System.out.println("Get all users from data base: " + userService.getAll());
-        User user = userService.get(1L);
+        var user = userService.get(1L);
         user.setUserName("New Tom");
         System.out.println("Update user with ID = 1 and delete user with ID = 3: "
                 + userService.update(user) + ", " + userService.delete(3L));
