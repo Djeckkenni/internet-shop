@@ -4,11 +4,30 @@
     <title>Mate Academy!</title>
 </head>
 <body>
-    <h1>Hello mates! Current time is ${time}</h1>
-    <button type="button"
-            onclick='location.href="/injectData"'>Generate Users
-    </button>
-
+<h1>Hello mates!</h1> <h4>Current time is ${time}</h4>
+<p>
+    <a href="${pageContext.request.contextPath}/registration">Registration</a>
+</p>
+<p>
+    <a href="${pageContext.request.contextPath}/injectUser">Inject test Data into the DB</a>
+</p>
+<p>
+    <a href="${pageContext.request.contextPath}/users/all">Get all users from test DB</a>
+</p>
+<p>
+    <a href="${pageContext.request.contextPath}/users/all">Delete user from test DB</a>
+</p>
+<p>
+    <a href="${pageContext.request.contextPath}/injectProduct">Inject test Product into the DB</a>
+</p>
+<p>
+    <a href="${pageContext.request.contextPath}/products/all">Get all products from test DB</a>
+</p>
+<p>
+    <a href="${pageContext.request.contextPath}/products/all">Add product to the shoppingCart</a>
+</p>
+<p>
+    <a href="${pageContext.request.contextPath}/shoppingCart/all">Watch the shoppingCart</a>
+</p>
 </body>
 </html>
-

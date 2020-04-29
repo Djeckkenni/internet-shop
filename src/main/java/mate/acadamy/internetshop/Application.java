@@ -3,9 +3,7 @@ package mate.acadamy.internetshop;
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import mate.acadamy.internetshop.inject.Injector;
-import mate.acadamy.internetshop.model.Order;
 import mate.acadamy.internetshop.model.Product;
-import mate.acadamy.internetshop.model.ShoppingCart;
 import mate.acadamy.internetshop.model.User;
 import mate.acadamy.internetshop.service.OrderService;
 import mate.acadamy.internetshop.service.ProductService;
@@ -20,6 +18,7 @@ public class Application {
             ClassNotFoundException {
         System.out.println("PRODUCT");
         System.out.println("-------");
+
         System.out.println("Initialized and created product boot, jeans, jacket, watch:");
         var productService = (ProductService) INJECTOR.getInstance(ProductService.class);
         var product1 = new Product();
@@ -64,11 +63,13 @@ public class Application {
         System.out.println(user1.toString());
         System.out.println("");
         System.out.println("Create shopping cart for " + user1.getUserName() + ":");
+
         var shoppingCartService = (ShoppingCartService)
                 INJECTOR.getInstance(ShoppingCartService.class);
         var shoppingCartServiceForUser1 = shoppingCartService
                 .getByUserId(user1.getUserId());
         System.out.println(shoppingCartServiceForUser1);
+
         System.out.println("Added product to the " + user1.getUserName() + " shopping cart:");
         shoppingCartService.addProduct(shoppingCartServiceForUser1,product1);
         shoppingCartService.addProduct(shoppingCartServiceForUser1,product2);
