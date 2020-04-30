@@ -10,16 +10,16 @@ import mate.acadamy.internetshop.inject.Injector;
 import mate.acadamy.internetshop.model.Product;
 import mate.acadamy.internetshop.service.ProductService;
 
-public class AllProductsController extends HttpServlet {
+public class GetAllProductsForAdminController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("mate.acadamy.internetshop");
-    private static final ProductService productService = (ProductService) INJECTOR
-            .getInstance(ProductService.class);
+    private ProductService productService =
+            (ProductService) INJECTOR.getInstance(ProductService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        List<Product> allProducts = productService.getAll();
-        req.setAttribute("products", allProducts);
-        req.getRequestDispatcher("/WEB-INF/views/products/all.jsp").forward(req, resp);
+        List<Product> products = productService.getAll();
+        req.setAttribute("products", products);
+        req.getRequestDispatcher("/WEB-INF/views/products/admin.jsp").forward(req, resp);
     }
 }

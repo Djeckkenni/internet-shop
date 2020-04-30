@@ -29,5 +29,11 @@
 <p>
     <a href="${pageContext.request.contextPath}/shoppingCart/all">Watch the shoppingCart</a>
 </p>
+<p>
+    <a href="${pageContext.request.contextPath}/orders/all">Watch the all orders</a>
+</p>
+<p>
+    <a href="${pageContext.request.contextPath}/products/admin">Watch the all orders (admin page)</a>
+</p>
 </body>
 </html>
