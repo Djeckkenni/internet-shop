@@ -2,15 +2,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Shoppingcart</title>
+    <title>All products (admin page)</title>
 </head>
 <body>
-<h1>Products in shopping cart</h1>
+<h1>All products</h1>
 <table border="1">
     <tr>
-        <th>Id</th>
+        <th>ID</th>
         <th>Name</th>
         <th>Price</th>
+        <th>Delete</th>
     </tr>
     <c:forEach var="product" items="${products}">
         <tr>
@@ -24,19 +25,14 @@
                 <c:out value="${product.productPrice}"/>
             </td>
             <td>
-                <a href="${pageContext.request.contextPath}/shoppingCart/deleteProduct?id=${product.productId}">Delete</a>
+                <a href="/products/deleteProductList?id=${product.productId}">delete product from list</a>
             </td>
         </tr>
     </c:forEach>
 </table>
 <p>
     <button type="button">
-        <a href="/order/complete">CompleteOrder</a>
-    </button>
-</p>
-<p>
-    <button type="button">
-        <a href="${pageContext.request.contextPath}/products/all">Go to the all product page</a>
+        <a href="${product.productPrice}/products/add">add new product</a>
     </button>
 </p>
 <p>
