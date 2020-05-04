@@ -14,6 +14,7 @@ public class UserController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("mate.acadamy.internetshop");
     private static final UserService userService = (UserService) INJECTOR
             .getInstance(UserService.class);
+    private static final String USER_ID = "user_id";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -21,6 +22,5 @@ public class UserController extends HttpServlet {
         List<User> allUsers = userService.getAll();
         req.setAttribute("users", allUsers);
         req.getRequestDispatcher("/WEB-INF/views/users/all.jsp").forward(req, resp);
-
     }
 }
