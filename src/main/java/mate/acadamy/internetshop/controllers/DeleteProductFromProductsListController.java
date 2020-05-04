@@ -11,7 +11,7 @@ import mate.acadamy.internetshop.model.Product;
 import mate.acadamy.internetshop.service.ProductService;
 import mate.acadamy.internetshop.service.ShoppingCartService;
 
-public class DeleteProductFromProductsList extends HttpServlet {
+public class DeleteProductFromProductsListController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("mate.acadamy.internetshop");
     private ShoppingCartService shoppingCartService =
             (ShoppingCartService) INJECTOR.getInstance(ShoppingCartService.class);
