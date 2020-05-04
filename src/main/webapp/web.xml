@@ -100,7 +100,7 @@
 
     <servlet>
         <servlet-name>deleteProductShoppingCart</servlet-name>
-        <servlet-class>mate.acadamy.internetshop.controllers.DeleteProductController</servlet-class>
+        <servlet-class>mate.acadamy.internetshop.controllers.DeleteProductControllerFromShoppingCart</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>deleteProductShoppingCart</servlet-name>

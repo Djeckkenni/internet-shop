@@ -6,7 +6,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import mate.acadamy.internetshop.inject.Injector;
 import mate.acadamy.internetshop.model.Product;
 import mate.acadamy.internetshop.service.ShoppingCartService;
@@ -19,8 +18,7 @@ public class GetShoppingCartController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        HttpSession session = req.getSession();
-        Long userId = (Long) session.getAttribute("user_id");
+        Long userId = (Long) req.getSession().getAttribute("user_id");
         List<Product> products = shoppingCartService.getByUserId(userId).getProducts();
         req.setAttribute("products", products);
         req.getRequestDispatcher("/WEB-INF/views/shoppingCart/all.jsp").forward(req, resp);
