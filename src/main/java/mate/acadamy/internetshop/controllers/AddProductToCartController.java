@@ -12,7 +12,6 @@ import mate.acadamy.internetshop.service.ProductService;
 import mate.acadamy.internetshop.service.ShoppingCartService;
 
 public class AddProductToCartController extends HttpServlet {
-    private static final Long USER_ID = 1L;
     private static final Injector INJECTOR = Injector.getInstance("mate.acadamy.internetshop");
     private ProductService productService = (ProductService) INJECTOR
             .getInstance(ProductService.class);
@@ -22,8 +21,9 @@ public class AddProductToCartController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+        Long userId = (Long) req.getSession().getAttribute("user_id");
         String productId = req.getParameter("id");
-        ShoppingCart shoppingCart = shoppingCartService.getByUserId(USER_ID);
+        ShoppingCart shoppingCart = shoppingCartService.getByUserId(userId);
         Product product = productService.get(Long.parseLong(productId));
         shoppingCartService.addProduct(shoppingCart, product);
         resp.sendRedirect(req.getContextPath() + "/cart");

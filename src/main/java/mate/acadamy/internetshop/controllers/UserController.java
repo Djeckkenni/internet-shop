@@ -14,7 +14,6 @@ public class UserController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("mate.acadamy.internetshop");
     private static final UserService userService = (UserService) INJECTOR
             .getInstance(UserService.class);
-    private static final String USER_ID = "user_id";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
