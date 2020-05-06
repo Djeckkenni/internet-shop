@@ -33,7 +33,10 @@
     <a href="${pageContext.request.contextPath}/orders/all">Watch the all orders</a>
 </p>
 <p>
-    <a href="${pageContext.request.contextPath}/products/admin">Watch the all orders (admin page)</a>
+    <a href="${pageContext.request.contextPath}/products/admin">Watch the all products (admin page)</a>
+</p>
+<p>
+    <a href="${pageContext.request.contextPath}/logout">Logout</a>
 </p>
 </body>
 </html>
