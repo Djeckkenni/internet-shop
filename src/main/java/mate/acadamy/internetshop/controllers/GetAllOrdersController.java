@@ -13,7 +13,7 @@ import mate.acadamy.internetshop.service.OrderService;
 import mate.acadamy.internetshop.service.UserService;
 
 public class GetAllOrdersController extends HttpServlet {
-    private static final Injector INJECTOR = Injector.getInstance("mate.academy");
+    private static final Injector INJECTOR = Injector.getInstance("mate.acadamy.internetshop");
     private OrderService orderService =
             (OrderService) INJECTOR.getInstance(OrderService.class);
     private final UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
