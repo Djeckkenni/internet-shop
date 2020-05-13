@@ -65,13 +65,16 @@ public class Injector {
         for (Class<?> clazz : classes) {
             Class<?>[] interfaces = clazz.getInterfaces();
             for (Class<?> singleInterface : interfaces) {
-                if (singleInterface.equals(certainInterface)) {
+                if (singleInterface.equals(certainInterface)
+                        && (clazz.isAnnotationPresent(Service.class)
+                        || clazz.isAnnotationPresent(Dao.class))) {
                     return clazz;
                 }
             }
         }
         throw new RuntimeException("Can't find class which implemented "
-                + certainInterface.getName() + " interface");
+                + certainInterface.getName()
+                + "interface and has valid annotation (Dao or Service)");
     }
 
     private static Object getNewInstance(Class<?> certainClass) {
@@ -104,17 +107,11 @@ public class Injector {
     }
 
     private static void setValueToField(Field field, Object instanceOfClass, Object classToInject) {
-        if (classToInject.getClass().getDeclaredAnnotation(Service.class) != null
-                || classToInject.getClass().getDeclaredAnnotation(Dao.class) != null) {
-            try {
-                field.setAccessible(true);
-                field.set(instanceOfClass, classToInject);
-            } catch (IllegalAccessException e) {
-                throw new RuntimeException("Can't set value to field ", e);
-            }
-        } else {
-            throw new RuntimeException(classToInject.getClass().getName()
-                    + " hasn't valid annotation (Dao or Service)");
+        try {
+            field.setAccessible(true);
+            field.set(instanceOfClass, classToInject);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException("Can't set value to field ", e);
         }
     }
 

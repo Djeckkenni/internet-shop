@@ -21,7 +21,7 @@
     <a href="${pageContext.request.contextPath}/injectProduct">Inject test Product into the DB</a>
 </p>
 <p>
-    <a href="${pageContext.request.contextPath}/products/all">Get all products from test DB</a>
+    <a href="${pageContext.request.contextPath}/products/all">Get all products from DB</a>
 </p>
 <p>
     <a href="${pageContext.request.contextPath}/products/all">Add product to the shoppingCart</a>
