@@ -8,8 +8,7 @@
 <h1>Order</h1>
 <p>
     Order id: <c:out value="${order.orderId}"/>,
-    Buyer Name: <c:out value="${order.user.userName}"/>,
-    Buyer id: <c:out value="${order.user.userId}"/>
+    Buyer id: <c:out value="${order.userId}"/>
 </p>
 <h3>Order list</h3>
 <table border="1">
@@ -37,6 +36,5 @@
         <a href="${pageContext.request.contextPath}/orders/all">Go to the all orders page</a>
     </button>
 </p>
-</body>
 </body>
 </html>

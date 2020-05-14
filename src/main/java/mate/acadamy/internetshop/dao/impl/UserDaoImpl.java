@@ -4,11 +4,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 import mate.acadamy.internetshop.dao.UserDao;
-import mate.acadamy.internetshop.dao.lib.Dao;
 import mate.acadamy.internetshop.db.Storage;
 import mate.acadamy.internetshop.model.User;
 
-@Dao
 public class UserDaoImpl implements UserDao {
     @Override
     public User create(User user) {

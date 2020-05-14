@@ -19,10 +19,11 @@ import mate.acadamy.internetshop.util.ConnectionUtil;
 public class ProductDaoJdbcImpl implements ProductDao {
     @Override
     public Product create(Product element) {
-        Connection connection = ConnectionUtil.getConnection();
-        String query = "INSERT INTO products (productName, productPrice) values(?, ?)";
-        try (PreparedStatement statement = connection
-                .prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+
+        String query = "INSERT INTO products (name, price) VALUES(?, ?)";
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query,
+                    Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, element.getProductName());
             statement.setBigDecimal(2, element.getProductPrice());
             statement.executeUpdate();
@@ -39,7 +40,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
     @Override
     public Optional<Product> get(Long id) {
         Connection connection = ConnectionUtil.getConnection();
-        String query = "SELECT * from products where product_id=?;";
+        String query = "SELECT * FROM products WHERE product_id=?;";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
@@ -101,8 +102,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     public Product getProductFromResultSet(ResultSet resultSet) throws SQLException {
         Long productId = resultSet.getLong("product_id");
-        String productName = resultSet.getString("product_name");
-        BigDecimal productPrice = resultSet.getBigDecimal("product_price");
+        String productName = resultSet.getString("name");
+        BigDecimal productPrice = resultSet.getBigDecimal("price");
         Product product = new Product();
         product.setProductId(productId);
         product.setProductName(productName);

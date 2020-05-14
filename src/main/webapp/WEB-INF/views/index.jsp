@@ -27,7 +27,7 @@
     <a href="${pageContext.request.contextPath}/products/all">Add product to the shoppingCart</a>
 </p>
 <p>
-    <a href="${pageContext.request.contextPath}/shoppingCart/all">Watch the shoppingCart</a>
+    <a href="${pageContext.request.contextPath}/cart">Watch the shoppingCart</a>
 </p>
 <p>
     <a href="${pageContext.request.contextPath}/orders/all">Watch the all orders</a>

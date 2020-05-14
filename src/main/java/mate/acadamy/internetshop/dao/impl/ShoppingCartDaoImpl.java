@@ -4,11 +4,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 import mate.acadamy.internetshop.dao.ShoppingCartDao;
-import mate.acadamy.internetshop.dao.lib.Dao;
 import mate.acadamy.internetshop.db.Storage;
 import mate.acadamy.internetshop.model.ShoppingCart;
 
-@Dao
 public class ShoppingCartDaoImpl implements ShoppingCartDao {
     @Override
     public ShoppingCart create(ShoppingCart shoppingCart) {
