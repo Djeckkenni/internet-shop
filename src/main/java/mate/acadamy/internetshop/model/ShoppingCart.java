@@ -2,11 +2,12 @@ package mate.acadamy.internetshop.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ShoppingCart {
     private Long shoppingCartId;
     private Long userId;
-    private List<Product> products = new ArrayList<>(new ArrayList<>());
+    private List<Product> products = new ArrayList<>();
 
     public Long getShoppingCartId() {
         return shoppingCartId;
@@ -30,6 +31,25 @@ public class ShoppingCart {
 
     public void setProducts(List<Product> products) {
         this.products = products;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ShoppingCart that = (ShoppingCart) o;
+        return Objects.equals(shoppingCartId, that.shoppingCartId)
+                && Objects.equals(userId, that.userId)
+                && Objects.equals(products, that.products);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(shoppingCartId, userId, products);
     }
 
     @Override

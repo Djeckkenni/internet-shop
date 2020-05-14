@@ -20,7 +20,7 @@ import mate.acadamy.internetshop.util.ConnectionUtil;
 public class OrderDaoJdbcImpl implements OrderDao {
     @Override
     public Order create(Order order) {
-        String query = "INSERT INTO internet_shop.orders (user_id) VALUES(?);";
+        String query = "INSERT INTO orders (user_id) VALUES(?)";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection
                     .prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -39,7 +39,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
 
     @Override
     public Optional<Order> get(Long id) {
-        String query = "SELECT * FROM internet_shop.orders WHERE order_id=?;";
+        String query = "SELECT * FROM orders WHERE order_id=?";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
@@ -57,7 +57,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
     @Override
     public List<Order> getAll() {
         List<Order> orders = new ArrayList<>();
-        String query = "SELECT * FROM internet_shop.orders;";
+        String query = "SELECT * FROM orders;";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
@@ -79,7 +79,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
 
     @Override
     public boolean delete(Long id) {
-        String query = "DELETE FROM internet_shop.orders WHERE order_id=?;";
+        String query = "DELETE FROM orders WHERE order_id=?;";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
@@ -93,8 +93,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
     }
 
     private void addProductsToOrder(Order order) {
-        String query = "INSERT INTO internet_shop.orders_products(order_id, product_id) "
-                + "VALUES(?,?);";
+        String query = "INSERT INTO orders_products(order_id, product_id) VALUES(?,?)";
         try (Connection connection = ConnectionUtil.getConnection()) {
             for (Product product : order.getProducts()) {
                 PreparedStatement statement = connection.prepareStatement(query);
@@ -118,10 +117,9 @@ public class OrderDaoJdbcImpl implements OrderDao {
     }
 
     private List<Product> getProductsOfOrder(Long orderId) {
-        String query = "SELECT products.product_id, products.name, products.price "
-                + "FROM orders_products INNER JOIN products "
-                + "ON  orders_products.product_id=products.product_id \n"
-                + "WHERE orders_products.order_id = ?;";
+        String query = "SELECT p.product_id, p.name, p.price "
+                + "FROM orders_products op INNER JOIN products p "
+                + "ON  op.product_id=p.product_id WHERE op.order_id = ?";
         List<Product> products = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -144,7 +142,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
     }
 
     private void deleteProductsFromOrder(Long orderId) {
-        String query = "DELETE FROM internet_shop.orders_products WHERE order_id=?;";
+        String query = "DELETE FROM orders_products WHERE order_id=?";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, orderId);
