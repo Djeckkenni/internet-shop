@@ -20,14 +20,26 @@ public class OrderServiceImpl implements OrderService {
     private OrderDao orderDao;
 
     @Override
-    public Order completeOrder(List<Product> products, User user) {
+    public Order completeOrder(List<Product> products, Long userId) {
         List<Product> newListProducts = new ArrayList<>(products);
         Order order = new Order();
         order.setProducts(newListProducts);
-        order.setUser(user);
+        order.setUserId(userId);
         orderDao.create(order);
-        shoppingCartService.clear(shoppingCartService.getByUserId(user.getUserId()));
+        shoppingCartService.clear(shoppingCartService.getByUserId(userId));
         return order;
+    }
+
+    @Override
+    public List<Order> getUserOrders(User user) {
+        return orderDao.getAll().stream()
+                .filter(order -> order.getUserId().equals(user.getUserId()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Order create(Order element) {
+        return orderDao.create(element);
     }
 
     @Override
@@ -36,10 +48,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> getUserOrders(User user) {
-        return orderDao.getAll().stream()
-                .filter(order -> order.getUser().equals(user))
-                .collect(Collectors.toList());
+    public Order update(Order element) {
+        return orderDao.update(element);
     }
 
     @Override

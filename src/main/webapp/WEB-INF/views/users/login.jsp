@@ -11,5 +11,10 @@
     Please provide your password: <input type="password" name="pwd" placeholder="Enter your password" required>
     <button type="submit">Login</button>
 </form>
+<p>
+    <button type="button">
+        <a href="${pageContext.request.contextPath}/registration">Go to the registration page</a>
+    </button>
+</p>
 </body>
 </html>

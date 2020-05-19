@@ -4,11 +4,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 import mate.acadamy.internetshop.dao.OrderDao;
-import mate.acadamy.internetshop.dao.lib.Dao;
 import mate.acadamy.internetshop.db.Storage;
 import mate.acadamy.internetshop.model.Order;
 
-@Dao
 public class OrderDaoImpl implements OrderDao {
     @Override
     public Order create(Order order) {

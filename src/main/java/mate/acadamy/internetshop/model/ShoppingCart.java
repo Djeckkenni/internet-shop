@@ -2,11 +2,12 @@ package mate.acadamy.internetshop.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ShoppingCart {
     private Long shoppingCartId;
-    private User user;
-    private List<Product> products = new ArrayList<>(new ArrayList<Product>());
+    private Long userId;
+    private List<Product> products = new ArrayList<>();
 
     public Long getShoppingCartId() {
         return shoppingCartId;
@@ -14,6 +15,14 @@ public class ShoppingCart {
 
     public void setShoppingCartId(Long shoppingCartId) {
         this.shoppingCartId = shoppingCartId;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public List<Product> getProducts() {
@@ -24,20 +33,31 @@ public class ShoppingCart {
         this.products = products;
     }
 
-    public User getUser() {
-        return user;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ShoppingCart that = (ShoppingCart) o;
+        return Objects.equals(shoppingCartId, that.shoppingCartId)
+                && Objects.equals(userId, that.userId)
+                && Objects.equals(products, that.products);
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    @Override
+    public int hashCode() {
+        return Objects.hash(shoppingCartId, userId, products);
     }
 
     @Override
     public String toString() {
         return "ShoppingCart{" + "shoppingCartId="
-                + shoppingCartId + ", products="
-                + products + ", user="
-                + user + '}';
+                + shoppingCartId + ", userId="
+                + userId + ", products=" + products
+                + '}';
     }
 }
 

@@ -1,11 +1,111 @@
-CREATE SCHEMA `internet_shop` DEFAULT CHARACTER SET utf8 ;
-CREATE TABLE `internet_shop`.`products` (
-  `product_id` BIGINT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `product_name` VARCHAR(225) CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' NOT NULL,
-  `product_price` DECIMAL(19,4) UNSIGNED NOT NULL,
-  PRIMARY KEY (`product_id`),
-  UNIQUE INDEX `product_name_UNIQUE` (`product_name` ASC) VISIBLE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-ALTER TABLE `internet_shop`.`products`
-CHANGE COLUMN `product_price` `product_price` DECIMAL(19,2) UNSIGNED NOT NULL ;
+CREATE TABLE internet_shop.products
+(
+    product_id BIGINT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    price DECIMAL(11, 2) NOT NULL,
+    PRIMARY KEY (product_id),
+    UNIQUE INDEX name_UNIQUE (name ASC) VISIBLE
+);
+INSERT INTO internet_shop.products (name, price) VALUES (jeans, 300);
+INSERT INTO internet_shop.products (name, price) VALUES (boots, 1000);
+INSERT INTO internet_shop.products (name, price) VALUES (jacket, 500);
+
+CREATE TABLE internet_shop.users
+(
+    user_id BIGINT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(256) NOT NULL,
+    login VARCHAR(256) NOT NULL,
+    password VARCHAR(256) NOT NULL,
+    PRIMARY KEY (user_id),
+    UNIQUE INDEX login_UNIQUE (login ASC) VISIBLE
+);
+
+CREATE TABLE internet_shop.roles
+(
+    role_id BIGINT NOT NULL AUTO_INCREMENT,
+    role_name VARCHAR(256) NOT NULL,
+    PRIMARY KEY (role_id),
+    UNIQUE INDEX role_name_UNIQUE (role_name ASC) VISIBLE
+);
+INSERT INTO internet_shop.roles (role_name) VALUES ('ADMIN');
+INSERT INTO internet_shop.roles (role_name) VALUES ('USER');
+
+CREATE TABLE internet_shop.users_roles
+(
+    user_id BIGINT NOT NULL,
+    role_id BIGINT NOT NULL,
+    INDEX users_roles_users_fk_idx (user_id ASC) VISIBLE,
+    INDEX users_roles_roles_fk_idx (role_id ASC) VISIBLE,
+    CONSTRAINT users_roles_users_fk
+        FOREIGN KEY (user_id)
+            REFERENCES internet_shop.users (user_id)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE,
+    CONSTRAINT users_roles_roles_fk
+        FOREIGN KEY (role_id)
+            REFERENCES internet_shop.roles (role_id)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE
+);
+
+CREATE TABLE internet_shop.shopping_carts
+(
+    cart_id BIGINT NOT NULL AUTO_INCREMENT,
+    user_id BIGINT NOT NULL,
+    PRIMARY KEY (cart_id),
+    INDEX carts_users_fk_idx (user_id ASC) VISIBLE,
+    CONSTRAINT carts_users_fk
+        FOREIGN KEY (user_id)
+            REFERENCES internet_shop.users (user_id)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE
+);
+
+CREATE TABLE internet_shop.shopping_carts_products
+(
+    cart_id BIGINT NOT NULL,
+    product_id BIGINT NOT NULL,
+    INDEX carts_products_carts_fk_idx (cart_id ASC) VISIBLE,
+    INDEX carts_products_products_fk_idx (product_id ASC) VISIBLE,
+    CONSTRAINT carts_products_carts_fk
+        FOREIGN KEY (cart_id)
+            REFERENCES internet_shop.shopping_carts (cart_id)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE,
+    CONSTRAINT carts_products_products_fk
+        FOREIGN KEY (product_id)
+            REFERENCES internet_shop.products (product_id)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE
+);
+
+CREATE TABLE internet_shop.orders
+(
+    order_id BIGINT NOT NULL AUTO_INCREMENT,
+    user_id  BIGINT NOT NULL,
+    PRIMARY KEY (order_id),
+    INDEX orders_users_fk_idx (user_id ASC) VISIBLE,
+    CONSTRAINT orders_users_fk
+        FOREIGN KEY (user_id)
+            REFERENCES internet_shop.users (user_id)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE
+);
+
+CREATE TABLE internet_shop.orders_products
+(
+    order_id BIGINT NOT NULL,
+    product_id BIGINT NOT NULL,
+    INDEX orders_id_fk_idx (order_id ASC) VISIBLE,
+    INDEX products_id_fk_idx (product_id ASC) VISIBLE,
+    CONSTRAINT orders_products_orders_fk
+        FOREIGN KEY (order_id)
+            REFERENCES internet_shop.orders (order_id)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE,
+    CONSTRAINT orders_products_products_fk
+        FOREIGN KEY (product_id)
+            REFERENCES internet_shop.products (product_id)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE
+);
