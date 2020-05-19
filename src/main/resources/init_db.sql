@@ -19,6 +19,8 @@ CREATE TABLE internet_shop.users
     PRIMARY KEY (user_id),
     UNIQUE INDEX login_UNIQUE (login ASC) VISIBLE
 );
+ALTER TABLE internet_shop.users
+ADD COLUMN salt VARBINARY(500) NOT NULL AFTER password;
 
 CREATE TABLE internet_shop.roles
 (
