@@ -1,8 +1,15 @@
 language: java
 jdk:
   - openjdk11
+
+addons:
+      sonarcloud:
+        organization: "djeckkenni"
+        token:
+          secure: "**************************" # encrypted value of your token
 script:
   - mvn clean install
+  - sonar-scanner
 cache:
   directories:
     - $HOME/.m2
