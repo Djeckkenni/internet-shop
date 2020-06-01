@@ -16,6 +16,10 @@
         <maven.checkstyle.plugin.configLocation>
             https://raw.githubusercontent.com/mate-academy/style-guides/master/java/checkstyle.xml
         </maven.checkstyle.plugin.configLocation>
+        <sonar.projectKey>Djeckkenni_internet-shop</sonar.projectKey>
+        <sonar.organization>djeckkenni</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.login>e8e2dcab76c093fcfbbda062345b93982efbda7c</sonar.login>
     </properties>
     <dependencies>
         <dependency>
@@ -88,6 +92,11 @@
                         <target>${jdk.version}</target>
                         <encoding>${project.build.sourceEncoding}</encoding>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonarsource.scanner.maven</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>3.7.0.1746</version>
                 </plugin>
             </plugins>
         </pluginManagement>
