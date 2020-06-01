@@ -5,6 +5,7 @@ jdk:
 addons:
       sonarcloud:
         organization: "djeckkenni"
+        sonar.login: "8561606211ed5a6a6d27d33abd8a912ed9da512d"
         token:
           secure: "e8e2dcab76c093fcfbbda062345b93982efbda7c" # encrypted value of your token
 script:
