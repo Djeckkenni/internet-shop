@@ -5,7 +5,7 @@ addons:
       sonarcloud:
         organization: "djeckkenni"
         token:
-          secure: "**************************" # encrypted value of your token
+          secure: e8e2dcab76c093fcfbbda062345b93982efbda7c
 script:
   - mvn clean install
   - sonar-scanner
