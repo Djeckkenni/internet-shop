@@ -5,10 +5,9 @@ addons:
       sonarcloud:
         organization: "djeckkenni"
         token:
-          secure: e8e2dcab76c093fcfbbda062345b93982efbda7c
+          secure: "e8e2dcab76c093fcfbbda062345b93982efbda7c"
 script:
-  - mvn clean install
-  - sonar-scanner
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
 cache:
   directories:
     - $HOME/.m2
