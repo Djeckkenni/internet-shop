@@ -1,16 +1,15 @@
 language: java
 jdk:
   - openjdk11
+
 addons:
       sonarcloud:
-        login:  "Djeckkenni@github"
         organization: "djeckkenni"
-
         token:
-          secure: e8e2dcab76c093fcfbbda062345b93982efbda7c
+          secure: "e8e2dcab76c093fcfbbda062345b93982efbda7c" # encrypted value of your token
 script:
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
-
+  - mvn clean install
+  - sonar-scanner
 cache:
   directories:
     - $HOME/.m2
