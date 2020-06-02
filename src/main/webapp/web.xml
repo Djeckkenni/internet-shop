@@ -81,15 +81,6 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>injectProduct</servlet-name>
-        <servlet-class>mate.acadamy.internetshop.controllers.InjectProductController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>injectProduct</servlet-name>
-        <url-pattern>/injectProduct</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>cart</servlet-name>
         <servlet-class>mate.acadamy.internetshop.controllers.GetShoppingCartController</servlet-class>
     </servlet>

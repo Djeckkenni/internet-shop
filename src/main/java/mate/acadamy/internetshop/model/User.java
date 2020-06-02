@@ -87,9 +87,9 @@ public class User {
     @Override
     public String toString() {
         return "User{" + "userId=" + userId
-                + ", userName='" + userName + '\''
-                + ", userLogin='" + userLogin + '\''
-                + ", userPassword='" + userPassword + '\''
+                + ", userName='" + userName
+                + ", userLogin='" + userLogin
+                + ", userPassword='" + userPassword
                 + ", salts=" + Arrays.toString(salts)
                 + ", roles=" + roles + '}';
     }

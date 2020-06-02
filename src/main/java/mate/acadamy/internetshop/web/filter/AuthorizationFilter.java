@@ -21,7 +21,6 @@ import org.apache.log4j.Logger;
 public class AuthorizationFilter implements Filter {
     private static final Logger LOGGER
             = Logger.getLogger(AuthorizationFilter.class);
-    private static final String USER_ID = "user_id";
     private static final Injector INJECTOR = Injector.getInstance("mate.acadamy.internetshop");
     private static final UserService userService = (UserService) INJECTOR
             .getInstance(UserService.class);
@@ -43,13 +42,11 @@ public class AuthorizationFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
         String requestedUrl = req.getServletPath();
-
         if (protectedUrls.get(requestedUrl) == null) {
             filterChain.doFilter(req, resp);
             return;
         }
         Long userId = (Long) req.getSession().getAttribute("user_id");
-
         if (userId == null || userService.get(userId) == null) {
             resp.sendRedirect("/users/login");
             return;
@@ -67,7 +64,6 @@ public class AuthorizationFilter implements Filter {
 
     @Override
     public void destroy() {
-
     }
 
     private boolean isAuthorized(User user, Set<Role.RoleName> authorizedRoles) {

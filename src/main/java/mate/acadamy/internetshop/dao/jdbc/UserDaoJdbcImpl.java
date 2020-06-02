@@ -21,7 +21,7 @@ import mate.acadamy.internetshop.util.ConnectionUtil;
 public class UserDaoJdbcImpl implements UserDao {
     @Override
     public Optional<User> findByLogin(String login) {
-        String query = "SELECT * FROM   users WHERE login=?;";
+        String query = "SELECT * FROM users WHERE login=?;";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, login);
@@ -38,7 +38,7 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public User create(User user) {
-        String query = "INSERT INTO users (name, login, password, salt) VALUES(?,?,?,?)";
+        String query = "INSERT INTO users(name, login, password,salt) VALUES(?,?,?,?)";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection
                     .prepareStatement(query, Statement.RETURN_GENERATED_KEYS);

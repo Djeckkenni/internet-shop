@@ -3,10 +3,9 @@ package mate.acadamy.internetshop.util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import org.apache.log4j.Logger;
 
 public class HashUtil {
-    private static final Logger LOGGER = Logger.getLogger(HashUtil.class);
+    private static final String HASH_TYPE = "SHA-512";
 
     public static byte[] getSalt() {
         SecureRandom random = new SecureRandom();
@@ -18,14 +17,14 @@ public class HashUtil {
     public static String hashPassword(String password, byte[] salt) {
         StringBuilder hashedPassword = new StringBuilder();
         try {
-            MessageDigest messageDigest = MessageDigest.getInstance("SHA-512");
+            MessageDigest messageDigest = MessageDigest.getInstance(HASH_TYPE);
             messageDigest.update(salt);
             byte[] digest = messageDigest.digest(password.getBytes());
-            for (byte b: digest) {
-                hashedPassword.append(String.format("%02x",b));
+            for (byte b : digest) {
+                hashedPassword.append(String.format("%02x", b));
             }
         } catch (NoSuchAlgorithmException e) {
-            LOGGER.error("Can't hash a password ", e);
+            throw new RuntimeException("Can't hash a password ");
         }
         return hashedPassword.toString();
     }

@@ -19,27 +19,13 @@ public class InjectUserController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        User bob = new User();
-        bob.setUserName("Bob");
-        bob.setUserLogin("Bob");
-        bob.setUserPassword("1");
-        bob.setRoles(Set.of(Role.of("USER")));
-        userService.create(bob);
-
-        User alisa = new User();
-        alisa.setUserName("Alisa");
-        alisa.setUserLogin("Alisa");
-        alisa.setUserPassword("1");
-        alisa.setRoles(Set.of(Role.of("USER")));
-        userService.create(alisa);
-
-        User admin = new User();
-        admin.setUserName("admin");
-        admin.setUserLogin("admin");
-        admin.setUserPassword("1");
-        admin.setRoles(Set.of(Role.of("ADMIN")));
-        userService.create(admin);
-
+        User testAdmin = new User();
+        testAdmin.setUserName("testAdmin");
+        testAdmin.setUserLogin("testAdmin");
+        testAdmin.setUserPassword("1");
+        testAdmin.setRoles(Set.of(Role.of("ADMIN")));
+        testAdmin.setSalts(new byte[]{3, 4});
+        userService.create(testAdmin);
         req.getRequestDispatcher("/WEB-INF/views/injectUser.jsp").forward(req, resp);
     }
 }

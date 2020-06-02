@@ -16,24 +16,24 @@ import mate.acadamy.internetshop.service.lib.Service;
 
 public class Injector {
 
-    private static final Map<String, Injector> injectors = new HashMap<>();
-    private static final Map<Class<?>, Object> instanceOfClasses = new HashMap<>();
-    private static final List<Class<?>> classes = new ArrayList<>();
+    private static final Map<String, Injector> INJECTORS = new HashMap<>();
+    private static final Map<Class<?>, Object> INSTANCE_OF_CLASSES = new HashMap<>();
+    private static final List<Class<?>> CLASSES = new ArrayList<>();
 
     private Injector(String mainPackageName) {
         try {
-            classes.addAll(getClasses(mainPackageName));
+            CLASSES.addAll(getClasses(mainPackageName));
         } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException("Can't get information about all classes", e);
         }
     }
 
     public static Injector getInstance(String mainPackageName) {
-        if (injectors.containsKey(mainPackageName)) {
-            return injectors.get(mainPackageName);
+        if (INJECTORS.containsKey(mainPackageName)) {
+            return INJECTORS.get(mainPackageName);
         }
         Injector injector = new Injector(mainPackageName);
-        injectors.put(mainPackageName, injector);
+        INJECTORS.put(mainPackageName, injector);
         return injector;
     }
 
@@ -62,7 +62,7 @@ public class Injector {
     }
 
     private static Class<?> findClassExtendingInterface(Class<?> certainInterface) {
-        for (Class<?> clazz : classes) {
+        for (Class<?> clazz : CLASSES) {
             Class<?>[] interfaces = clazz.getInterfaces();
             for (Class<?> singleInterface : interfaces) {
                 if (singleInterface.equals(certainInterface)
@@ -78,11 +78,11 @@ public class Injector {
     }
 
     private static Object getNewInstance(Class<?> certainClass) {
-        if (instanceOfClasses.containsKey(certainClass)) {
-            return instanceOfClasses.get(certainClass);
+        if (INSTANCE_OF_CLASSES.containsKey(certainClass)) {
+            return INSTANCE_OF_CLASSES.get(certainClass);
         }
         Object newInstance = createInstance(certainClass);
-        instanceOfClasses.put(certainClass, newInstance);
+        INSTANCE_OF_CLASSES.put(certainClass, newInstance);
         return newInstance;
     }
 
@@ -115,15 +115,6 @@ public class Injector {
         }
     }
 
-    /**
-     * Scans all classes accessible from the context class loader which
-     * belong to the given package and subpackages.
-     *
-     * @param packageName The base package
-     * @return The classes
-     * @throws ClassNotFoundException if the class cannot be located
-     * @throws IOException            if I/O errors occur
-     */
     private static List<Class<?>> getClasses(String packageName)
             throws IOException, ClassNotFoundException {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
@@ -144,14 +135,6 @@ public class Injector {
         return classes;
     }
 
-    /**
-     * Recursive method used to find all classes in a given directory and subdirs.
-     *
-     * @param directory   The base directory
-     * @param packageName The package name for classes found inside the base directory
-     * @return The classes
-     * @throws ClassNotFoundException if the class cannot be located
-     */
     private static List<Class<?>> findClasses(File directory, String packageName)
             throws ClassNotFoundException {
         List<Class<?>> classes = new ArrayList<>();

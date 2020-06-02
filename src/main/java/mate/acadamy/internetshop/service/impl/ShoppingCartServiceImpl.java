@@ -47,9 +47,4 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         shoppingCart.setUserId(userId);
         return shoppingCartDao.create(shoppingCart);
     }
-
-    @Override
-    public List<Product> getAllProducts(ShoppingCart shoppingCart) {
-        return shoppingCart.getProducts();
-    }
 }
